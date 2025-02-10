@@ -3,91 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interacción con Gif</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f5f5f5;
-        }
-
-        .bg-green {
-            background-color: #4CAF50;
-        }
-
-        .container {
-            margin-top: 50px;
-        }
-
-        .container img {
-            width: 200px;
-            height: auto;
-            display: none;
-        }
-
-        .container button {
-            font-size: 20px;
-            padding: 10px 20px;
-            margin: 10px;
-            cursor: pointer;
-            background-color: #F1330A;
-            border: none;
-            color: white;
-            border-radius: 5px;
-        }
-
-        .container button:hover {
-            background-color: #ff5733;
-        }
-
-        .container #messageContainer {
-            display: none;
-            font-size: 30px;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <title>Invitación a San Valentín codificada</title>
 </head>
 <body>
     <div class="container">
-        <h1>¿Quieres ver algo divertido?</h1>
-        <p id="question">¿Sí o No?</p>
+        <div id="gifContainer">
+            <img id="gifContainerImg" src="https://encoded.pe/sanvalentin/mocha.gif" alt="Ositos Iniciales">
+        </div>
+        <div id="happyGifContainer" style="display: none;">
+            <img src="https://encoded.pe/sanvalentin/mocha.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
+        </div>
+        <div id="happyGifContainer2" style="display: none;">
+            <img src="https://encoded.pe/sanvalentin/mocha6final.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
+        </div>
+        <div id="happyGifContainer3" style="display: none;">
+            <img src="https://encoded.pe/sanvalentin/mocha7final.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
+        </div>
+        <div id="happyGifContainer4" style="display: none;">
+            <img src="https://encoded.pe/sanvalentin/mocha9final.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
+        </div>
+        <div id="sadGifContainer" style="display: none;">
+            <img src="https://encoded.pe/sanvalentin/mocha2.gif" alt="Osito Triste" style="width: 80%; height: 80%;">
+        </div>
+        <div id="sadGifContainer1" style="display: none;">
+            <img src="https://encoded.pe/sanvalentin/mocha3.gif" alt="Osito Triste" style="width: 80%; height: 80%;">
+        </div>
+        <div id="sadGifContainer2" style="display: none;"></div>
+        <h1 id="question">¿Quieres ser mi San Valentín?</h1>
+        <div id="messageContainer" style="display: none;"></div>
         <button id="siBtn">Sí</button>
         <button id="noBtn">No</button>
-
-        <div id="gifContainer">
-            <img src="https://media.giphy.com/media/xT9DPCJHW5eW6IvvSg/giphy.gif" alt="Gif feliz">
-        </div>
-
-        <div id="happyGifContainer" style="display:none;">
-            <img src="https://media.giphy.com/media/l0HlL0WQjdiPjm9iU/giphy.gif" alt="Gif feliz 1">
-        </div>
-
-        <div id="happyGifContainer2" style="display:none;">
-            <img src="https://media.giphy.com/media/9J7oFzSvE9tXy/giphy.gif" alt="Gif feliz 2">
-        </div>
-
-        <div id="happyGifContainer3" style="display:none;">
-            <img src="https://media.giphy.com/media/xUPGciv5shvqj9XcNS/giphy.gif" alt="Gif feliz 3">
-        </div>
-
-        <div id="happyGifContainer4" style="display:none;">
-            <img src="https://media.giphy.com/media/xT1XGJp5qnbp2Kh0ds/giphy.gif" alt="Gif feliz 4">
-        </div>
-
-        <div id="sadGifContainer" style="display:none;">
-            <img src="https://media.giphy.com/media/26vUef4tJctXaYX3u/giphy.gif" alt="Gif triste">
-        </div>
-
-        <div id="sadGifContainer1" style="display:none;">
-            <img src="https://media.giphy.com/media/6uGHVksA6qV7a/giphy.gif" alt="Gif triste 1">
-        </div>
-
-        <div id="sadGifContainer2" style="display:none;">
-            <img src="https://media.giphy.com/media/3o6fJ77zNIfWgTu5co/giphy.gif" alt="Gif triste 2">
-        </div>
-
-        <div id="messageContainer"></div>
     </div>
 
     <script>
