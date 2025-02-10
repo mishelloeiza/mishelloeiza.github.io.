@@ -1,16 +1,55 @@
-
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <title>Invitación a San Valentín encoded</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        #gifContainer img,
+        #happyGifContainer img,
+        #sadGifContainer img {
+            width: 80%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #ff1f5b;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         
+        <!-- Contenedores de imágenes GIF -->
         <div id="gifContainer">
-            <img id="gifContainerImg" src="https://encoded.pe/sanvalentin/mocha.gif" alt="Ositos Iniciales" ">
+            <img id="gifContainerImg" src="https://encoded.pe/sanvalentin/mocha.gif" alt="Ositos Iniciales">
         </div>
         <div id="happyGifContainer" style="display: none;">
             <img src="https://encoded.pe/sanvalentin/mocha.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
@@ -30,7 +69,6 @@
         <div id="sadGifContainer1" style="display: none;">
             <img src="https://encoded.pe/sanvalentin/mocha3.gif" alt="Osito Triste" style="width: 80%; height: 80%;">
         </div>
-        <div id="sadGifContainer2" style="display: none;"></div>
         
         <h1 id="question">¿Quieres ser mi San Valentín?</h1>
         <div id="messageContainer" style="display: none;"></div>
@@ -40,6 +78,46 @@
         
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Esperar a que se cargue el DOM
+        document.addEventListener("DOMContentLoaded", function() {
+            const siBtn = document.getElementById("siBtn");
+            const noBtn = document.getElementById("noBtn");
+            const question = document.getElementById("question");
+            const messageContainer = document.getElementById("messageContainer");
+            const gifContainers = [
+                document.getElementById("gifContainer"),
+                document.getElementById("happyGifContainer"),
+                document.getElementById("happyGifContainer2"),
+                document.getElementById("happyGifContainer3"),
+                document.getElementById("happyGifContainer4"),
+                document.getElementById("sadGifContainer"),
+                document.getElementById("sadGifContainer1")
+            ];
+
+            // Función para ocultar todos los contenedores de gifs
+            function hideAllGifs() {
+                gifContainers.forEach(container => {
+                    container.style.display = "none";
+                });
+            }
+
+            // Mostrar la imagen correspondiente cuando se da clic en "Sí"
+            siBtn.addEventListener("click", function() {
+                hideAllGifs();
+                document.getElementById("happyGifContainer").style.display = "block";
+                messageContainer.innerHTML = "¡Yay! ¡Eres mi San Valentín!";
+                messageContainer.style.display = "block";
+            });
+
+            // Mostrar la imagen correspondiente cuando se da clic en "No"
+            noBtn.addEventListener("click", function() {
+                hideAllGifs();
+                document.getElementById("sadGifContainer").style.display = "block";
+                messageContainer.innerHTML = "¡Oh no! ¡Quizás otro año!";
+                messageContainer.style.display = "block";
+            });
+        });
+    </script>
 </body>
 </html>
