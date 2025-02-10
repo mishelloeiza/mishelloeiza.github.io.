@@ -1,167 +1,223 @@
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Invitación a San Valentín codificada</title>
+    <title>Interacción con Gif</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+
+        .bg-green {
+            background-color: #4CAF50;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .container img {
+            width: 200px;
+            height: auto;
+            display: none;
+        }
+
+        .container button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            background-color: #F1330A;
+            border: none;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .container button:hover {
+            background-color: #ff5733;
+        }
+
+        .container #messageContainer {
+            display: none;
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <div id="gifContainer">
-            <img id="gifContainerImg" src="https://encoded.pe/sanvalentin/mocha.gif" alt="Ositos Iniciales">
-        </div>
-        <div id="happyGifContainer" style="display: none;">
-            <img src="https://encoded.pe/sanvalentin/mocha.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
-        </div>
-        <div id="happyGifContainer2" style="display: none;">
-            <img src="https://encoded.pe/sanvalentin/mocha6final.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
-        </div>
-        <div id="happyGifContainer3" style="display: none;">
-            <img src="https://encoded.pe/sanvalentin/mocha7final.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
-        </div>
-        <div id="happyGifContainer4" style="display: none;">
-            <img src="https://encoded.pe/sanvalentin/mocha9final.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
-        </div>
-        <div id="sadGifContainer" style="display: none;">
-            <img src="https://encoded.pe/sanvalentin/mocha2.gif" alt="Osito Triste" style="width: 80%; height: 80%;">
-        </div>
-        <div id="sadGifContainer1" style="display: none;">
-            <img src="https://encoded.pe/sanvalentin/mocha3.gif" alt="Osito Triste" style="width: 80%; height: 80%;">
-        </div>
-        <div id="sadGifContainer2" style="display: none;"></div>
-        <h1 id="question">¿Quieres ser mi San Valentín?</h1>
-        <div id="messageContainer" style="display: none;"></div>
+        <h1>¿Quieres ver algo divertido?</h1>
+        <p id="question">¿Sí o No?</p>
         <button id="siBtn">Sí</button>
         <button id="noBtn">No</button>
+
+        <div id="gifContainer">
+            <img src="https://media.giphy.com/media/xT9DPCJHW5eW6IvvSg/giphy.gif" alt="Gif feliz">
+        </div>
+
+        <div id="happyGifContainer" style="display:none;">
+            <img src="https://media.giphy.com/media/l0HlL0WQjdiPjm9iU/giphy.gif" alt="Gif feliz 1">
+        </div>
+
+        <div id="happyGifContainer2" style="display:none;">
+            <img src="https://media.giphy.com/media/9J7oFzSvE9tXy/giphy.gif" alt="Gif feliz 2">
+        </div>
+
+        <div id="happyGifContainer3" style="display:none;">
+            <img src="https://media.giphy.com/media/xUPGciv5shvqj9XcNS/giphy.gif" alt="Gif feliz 3">
+        </div>
+
+        <div id="happyGifContainer4" style="display:none;">
+            <img src="https://media.giphy.com/media/xT1XGJp5qnbp2Kh0ds/giphy.gif" alt="Gif feliz 4">
+        </div>
+
+        <div id="sadGifContainer" style="display:none;">
+            <img src="https://media.giphy.com/media/26vUef4tJctXaYX3u/giphy.gif" alt="Gif triste">
+        </div>
+
+        <div id="sadGifContainer1" style="display:none;">
+            <img src="https://media.giphy.com/media/6uGHVksA6qV7a/giphy.gif" alt="Gif triste 1">
+        </div>
+
+        <div id="sadGifContainer2" style="display:none;">
+            <img src="https://media.giphy.com/media/3o6fJ77zNIfWgTu5co/giphy.gif" alt="Gif triste 2">
+        </div>
+
+        <div id="messageContainer"></div>
     </div>
-    <script src="script.js"></script>
-</body>
-</html>
-let noButtonClickCount = 0; // Contador para el botón "No"
-let noButtonState = 0; // Estado actual del botón "No"
 
-// Mostrar el gif inicial
-document.getElementById('gifContainer').style.display = 'block';
+    <script>
+        let noButtonClickCount = 0; // Contador para el botón "No"
+        let noButtonState = 0; // Estado actual del botón "No"
 
-document.getElementById('siBtn').addEventListener('click', function() {
-    // Ocultar el gif triste y mostrar el gif feliz
-    document.getElementById('sadGifContainer').style.display = 'none';
-    document.getElementById('sadGifContainer1').style.display = 'none';
-    document.getElementById('sadGifContainer2').style.display = 'none';
-    document.getElementById('gifContainer').style.display = 'none';
-    document.getElementById('happyGifContainer').style.display = 'block';
+        // Mostrar el gif inicial
+        document.getElementById('gifContainer').style.display = 'block';
 
-    // Ocultar los botones "Pregunta Sí" y "No"
-    document.getElementById('question').style.display = 'none';
-    document.getElementById('siBtn').style.display = 'none';
-    document.body.classList.add('bg-green');
-    document.getElementById('noBtn').style.display = 'none';
-
-    // Mostrar el mensaje específico
-    document.getElementById('messageContainer').style.display = 'block';
-    document.getElementById('messageContainer').innerHTML = '¡Oh Siii! jajaja';
-
-    // Mostrar otro gif después de 3 segundos
-    setTimeout(function() {
-        document.getElementById('happyGifContainer').style.display = 'none';
-        document.getElementById('happyGifContainer2').style.display = 'block';
-    }, 1000);
-
-    setTimeout(function() {
-        document.getElementById('happyGifContainer2').style.display = 'none';
-        document.getElementById('happyGifContainer3').style.display = 'block';
-    }, 2000);
-
-    setTimeout(function() {
-        document.getElementById('happyGifContainer3').style.display = 'none';
-        document.getElementById('happyGifContainer4').style.display = 'block';
-    }, 3000);
-});
-
-document.getElementById('noBtn').addEventListener('click', function() {
-    switch (noButtonState) {
-        case 0: // Primera vez haciendo clic en "No"
-            document.getElementById('happyGifContainer').style.display = 'none';
-            document.getElementById('gifContainer').style.display = 'none';
-            document.getElementById('sadGifContainer').style.display = 'block';
-            // Modificar el botón "No"
-            document.getElementById('noBtn').innerHTML = '¡Oh, no! ¿Estás seguro?';
-            document.getElementById('noBtn').style.backgroundColor = '#F1330A';
-            document.getElementById('siBtn').style.fontSize = '40px';
-            document.getElementById('siBtn').style.padding = '20px 40px';
-            noButtonClickCount++;
-            noButtonState++;
-            break;
-
-        case 1: // Segunda vez haciendo clic en "No"
-            document.getElementById('noBtn').innerHTML = '¡¿Realmente estás seguro?!';
-            document.getElementById('noBtn').style.backgroundColor = '#F1330A';
-            document.getElementById('sadGifContainer').style.display = 'none';
-            document.getElementById('sadGifContainer2').style.display = 'block';
-            document.getElementById('siBtn').style.fontSize = '50px';
-            document.getElementById('siBtn').style.padding = '30px 50px';
-            noButtonState++;
-            break;
-
-        case 2:
-            document.getElementById('noBtn').innerHTML = 'Estás seguro de verdad, ¿eh?';
-            document.getElementById('noBtn').style.backgroundColor = '#F1330A';
-            document.getElementById('sadGifContainer').style.display = 'none';
-            document.getElementById('sadGifContainer2').style.display = 'none';
-            document.getElementById('sadGifContainer1').style.display = 'block';
-            document.getElementById('siBtn').style.fontSize = '60px';
-            document.getElementById('siBtn').style.padding = '40px 60px';
-            noButtonState++;
-            break;
-
-        case 3:
-            document.getElementById('noBtn').innerHTML = '¿Eres positivo?';
-            document.getElementById('noBtn').style.backgroundColor = '#F1330A';
-            document.getElementById('siBtn').style.fontSize = '70px';
-            document.getElementById('siBtn').style.padding = '50px 70px';
-            noButtonState++;
-            break;
-
-        case 4:
-            document.getElementById('noBtn').innerHTML = '¿Di que si por favor?';
-            document.getElementById('noBtn').style.backgroundColor = '#F1330A';
-            document.getElementById('siBtn').style.fontSize = '80px';
-            document.getElementById('siBtn').style.padding = '60px 80px';
-            noButtonState++;
-            break;
-
-        case 5:
-            document.getElementById('noBtn').innerHTML = 'Solo piensa en ello';
-            document.getElementById('noBtn').style.backgroundColor = '#F1330A';
-            document.getElementById('siBtn').style.fontSize = '90px';
-            document.getElementById('siBtn').style.padding = '70px 90px';
-            noButtonState++;
-            break;
-
-        case 6:
-            document.getElementById('noBtn').innerHTML = 'Si, dices que no estará muy triste';
-            document.getElementById('noBtn').style.backgroundColor = '#F1330A';
-            document.getElementById('siBtn').style.fontSize = '100px';
-            document.getElementById('siBtn').style.padding = '80px 100px';
-            noButtonState++;
-            break;
-
-        case 7:
-            document.getElementById('noBtn').innerHTML = 'Estaré muy triste';
-            document.getElementById('noBtn').style.backgroundColor = '#F1330A';
-            document.getElementById('siBtn').style.fontSize = '120px';
-            document.getElementById('siBtn').style.padding = '90px 120px';
-            noButtonState++;
-            break;
-
-        default:
-            // Terminar el ciclo y mostrar un gif de despedida
-            document.getElementById('noBtn').innerHTML = 'No me hagas esto';
+        document.getElementById('siBtn').addEventListener('click', function() {
+            // Ocultar el gif triste y mostrar el gif feliz
             document.getElementById('sadGifContainer').style.display = 'none';
             document.getElementById('sadGifContainer1').style.display = 'none';
             document.getElementById('sadGifContainer2').style.display = 'none';
-            break;
-    }
-});
+            document.getElementById('gifContainer').style.display = 'none';
+            document.getElementById('happyGifContainer').style.display = 'block';
 
+            // Ocultar los botones "Pregunta Sí" y "No"
+            document.getElementById('question').style.display = 'none';
+            document.getElementById('siBtn').style.display = 'none';
+            document.body.classList.add('bg-green');
+            document.getElementById('noBtn').style.display = 'none';
+
+            // Mostrar el mensaje específico
+            document.getElementById('messageContainer').style.display = 'block';
+            document.getElementById('messageContainer').innerHTML = '¡Oh Siii! jajaja';
+
+            // Mostrar otro gif después de 3 segundos
+            setTimeout(function() {
+                document.getElementById('happyGifContainer').style.display = 'none';
+                document.getElementById('happyGifContainer2').style.display = 'block';
+            }, 1000);
+
+            setTimeout(function() {
+                document.getElementById('happyGifContainer2').style.display = 'none';
+                document.getElementById('happyGifContainer3').style.display = 'block';
+            }, 2000);
+
+            setTimeout(function() {
+                document.getElementById('happyGifContainer3').style.display = 'none';
+                document.getElementById('happyGifContainer4').style.display = 'block';
+            }, 3000);
+        });
+
+        document.getElementById('noBtn').addEventListener('click', function() {
+            switch (noButtonState) {
+                case 0: // Primera vez haciendo clic en "No"
+                    document.getElementById('happyGifContainer').style.display = 'none';
+                    document.getElementById('gifContainer').style.display = 'none';
+                    document.getElementById('sadGifContainer').style.display = 'block';
+                    // Modificar el botón "No"
+                    document.getElementById('noBtn').innerHTML = '¡Oh, no! ¿Estás seguro?';
+                    document.getElementById('noBtn').style.backgroundColor = '#F1330A';
+                    document.getElementById('siBtn').style.fontSize = '40px';
+                    document.getElementById('siBtn').style.padding = '20px 40px';
+                    noButtonClickCount++;
+                    noButtonState++;
+                    break;
+
+                case 1: // Segunda vez haciendo clic en "No"
+                    document.getElementById('noBtn').innerHTML = '¡¿Realmente estás seguro?!';
+                    document.getElementById('noBtn').style.backgroundColor = '#F1330A';
+                    document.getElementById('sadGifContainer').style.display = 'none';
+                    document.getElementById('sadGifContainer2').style.display = 'block';
+                    document.getElementById('siBtn').style.fontSize = '50px';
+                    document.getElementById('siBtn').style.padding = '30px 50px';
+                    noButtonState++;
+                    break;
+
+                case 2:
+                    document.getElementById('noBtn').innerHTML = 'Estás seguro de verdad, ¿eh?';
+                    document.getElementById('noBtn').style.backgroundColor = '#F1330A';
+                    document.getElementById('sadGifContainer').style.display = 'none';
+                    document.getElementById('sadGifContainer2').style.display = 'none';
+                    document.getElementById('sadGifContainer1').style.display = 'block';
+                    document.getElementById('siBtn').style.fontSize = '60px';
+                    document.getElementById('siBtn').style.padding = '40px 60px';
+                    noButtonState++;
+                    break;
+
+                case 3:
+                    document.getElementById('noBtn').innerHTML = '¿Eres positivo?';
+                    document.getElementById('noBtn').style.backgroundColor = '#F1330A';
+                    document.getElementById('siBtn').style.fontSize = '70px';
+                    document.getElementById('siBtn').style.padding = '50px 70px';
+                    noButtonState++;
+                    break;
+
+                case 4:
+                    document.getElementById('noBtn').innerHTML = '¿Di que si por favor?';
+                    document.getElementById('noBtn').style.backgroundColor = '#F1330A';
+                    document.getElementById('siBtn').style.fontSize = '80px';
+                    document.getElementById('siBtn').style.padding = '60px 80px';
+                    noButtonState++;
+                    break;
+
+                case 5:
+                    document.getElementById('noBtn').innerHTML = 'Solo piensa en ello';
+                    document.getElementById('noBtn').style.backgroundColor = '#F1330A';
+                    document.getElementById('siBtn').style.fontSize = '90px';
+                    document.getElementById('siBtn').style.padding = '70px 90px';
+                    noButtonState++;
+                    break;
+
+                case 6:
+                    document.getElementById('noBtn').innerHTML = 'Si, dices que no estará muy triste';
+                    document.getElementById('noBtn').style.backgroundColor = '#F1330A';
+                    document.getElementById('siBtn').style.fontSize = '100px';
+                    document.getElementById('siBtn').style.padding = '80px 100px';
+                    noButtonState++;
+                    break;
+
+                case 7:
+                    document.getElementById('noBtn').innerHTML = 'Estaré muy triste';
+                    document.getElementById('noBtn').style.backgroundColor = '#F1330A';
+                    document.getElementById('siBtn').style.fontSize = '120px';
+                    document.getElementById('siBtn').style.padding = '90px 120px';
+                    noButtonState++;
+                    break;
+
+                default:
+                    // Terminar el ciclo y mostrar un gif de despedida
+                    document.getElementById('noBtn').innerHTML = 'No me hagas esto';
+                    document.getElementById('sadGifContainer').style.display = 'none';
+                    document.getElementById('sadGifContainer1').style.display = 'none';
+                    document.getElementById('sadGifContainer2').style.display = 'none';
+                    break;
+            }
+        });
+    </script>
+</body>
+</html>
 
