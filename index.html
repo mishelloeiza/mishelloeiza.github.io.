@@ -29,7 +29,7 @@
             color: white;
             border: none;
             border-radius: 5px;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
         }
         button:hover {
             background-color: #45a049;
@@ -48,14 +48,14 @@
 <body>
 
     <div class="container">
+        <!-- Gif de Ositos Iniciales -->
         <div id="gifContainer" class="gif-container">
             <img src="https://encoded.pe/sanvalentin/mocha.gif" alt="Ositos Iniciales" style="width: 100%; height: 100%;">
         </div>
+
+        <!-- Gif de Ositos Felices -->
         <div id="happyGifContainer" class="gif-container">
             <img src="https://encoded.pe/sanvalentin/mocha.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
-        </div>
-        <div id="sadGifContainer" class="gif-container">
-            <img src="https://encoded.pe/sanvalentin/mocha2.gif" alt="Osito Triste" style="width: 80%; height: 80%;">
         </div>
         
         <h1 id="question">¿Quieres ser mi San Valentín?</h1>
@@ -83,17 +83,46 @@
             // Función cuando se hace clic en "Sí"
             siBtn.addEventListener("click", function() {
                 hideAllGifs();
-                document.getElementById("happyGifContainer").style.display = "block";  // Muestra gif feliz
-                messageContainer.innerHTML = "¡Yay! ¡Eres mi San Valentín!";
-                messageContainer.style.display = "block";
+                document.getElementById("gifContainer").style.display = "block";  // Muestra gif inicial
+                setTimeout(() => {
+                    document.getElementById("happyGifContainer").style.display = "block";  // Muestra gif feliz
+                    messageContainer.innerHTML = "¡Yay! ¡Eres mi San Valentín!";
+                    messageContainer.style.display = "block";
+                }, 2000);  // Espera 2 segundos antes de mostrar el gif feliz
             });
 
             // Función cuando se hace clic en "No"
             noBtn.addEventListener("click", function() {
-                hideAllGifs();
-                document.getElementById("sadGifContainer").style.display = "block";  // Muestra gif triste
-                messageContainer.innerHTML = "¡Oh no! ¡Quizás otro año!";
-                messageContainer.style.display = "block";
+                let counter = 0;
+                let phrases = [
+                    "¡Ay, qué pena! ¿De verdad no?",
+                    "¡Oh no! ¡Estaba seguro que dirías que sí!",
+                    "¡Aún así te quiero mucho sabes!",
+                    "¿Seguro? ¿No quieres cambiar de opinión?",
+                    "¡Vamos, no seas tímid@!"
+                ];
+
+                function showNextPhrase() {
+                    if (counter < phrases.length) {
+                        messageContainer.innerHTML = phrases[counter];
+                        messageContainer.style.display = "block";
+                        counter++;
+                    } else {
+                        messageContainer.innerHTML = "¡Eres un caso perdido, pero yo sigo insistiendo!";
+                    }
+
+                    // Aumenta el tamaño del botón "Sí"
+                    siBtn.style.transform = "scale(1.5)";
+                    siBtn.style.transition = "transform 0.3s ease";
+                }
+
+                // Mostrar frases cada 2 segundos
+                let phraseInterval = setInterval(showNextPhrase, 2000);
+
+                // Cuando el usuario presiona "Sí", se detiene la repetición de frases y se sigue el flujo
+                siBtn.addEventListener("click", function() {
+                    clearInterval(phraseInterval);
+                });
             });
         });
     </script>
