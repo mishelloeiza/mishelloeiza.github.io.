@@ -53,11 +53,16 @@
             <img src="https://encoded.pe/sanvalentin/mocha.gif" alt="Ositos Iniciales" style="width: 100%; height: 100%;">
         </div>
 
-        <!-- Gif de Ositos Felices -->
+        <!-- Gif de Ositos Felices (aparecerá solo cuando se presione "Sí") -->
         <div id="happyGifContainer" class="gif-container">
             <img src="https://encoded.pe/sanvalentin/mocha.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
         </div>
-        
+
+        <!-- Gif de Ositos Tristes (aparecerá solo cuando se presione "No") -->
+        <div id="sadGifContainer" class="gif-container">
+            <img src="https://encoded.pe/sanvalentin/mocha2.gif" alt="Osito Triste" style="width: 80%; height: 80%;">
+        </div>
+
         <h1 id="question">¿Quieres ser mi San Valentín?</h1>
         
         <div id="messageContainer" style="display: none;"></div>
@@ -83,12 +88,9 @@
             // Función cuando se hace clic en "Sí"
             siBtn.addEventListener("click", function() {
                 hideAllGifs();
-                document.getElementById("gifContainer").style.display = "block";  // Muestra gif inicial
-                setTimeout(() => {
-                    document.getElementById("happyGifContainer").style.display = "block";  // Muestra gif feliz
-                    messageContainer.innerHTML = "¡Yay! ¡Eres mi San Valentín!";
-                    messageContainer.style.display = "block";
-                }, 2000);  // Espera 2 segundos antes de mostrar el gif feliz
+                document.getElementById("happyGifContainer").style.display = "block";  // Muestra gif feliz
+                messageContainer.innerHTML = "¡Yay! ¡Eres mi San Valentín!";
+                messageContainer.style.display = "block";
             });
 
             // Función cuando se hace clic en "No"
@@ -97,7 +99,7 @@
                 let phrases = [
                     "¡Ay, qué pena! ¿De verdad no?",
                     "¡Oh no! ¡Estaba seguro que dirías que sí!",
-                    "¡Aún así te quiero mucho sabes!",
+                    "¡Aún así te quiero mucho!",
                     "¿Seguro? ¿No quieres cambiar de opinión?",
                     "¡Vamos, no seas tímid@!"
                 ];
@@ -110,6 +112,10 @@
                     } else {
                         messageContainer.innerHTML = "¡Eres un caso perdido, pero yo sigo insistiendo!";
                     }
+
+                    // Muestra gif triste
+                    hideAllGifs();
+                    document.getElementById("sadGifContainer").style.display = "block";
 
                     // Aumenta el tamaño del botón "Sí"
                     siBtn.style.transform = "scale(1.5)";
