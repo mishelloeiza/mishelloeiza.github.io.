@@ -60,18 +60,9 @@
         <button id="siBtn">Sí</button>
         <button id="noBtn">No</button>
 
-        <!-- Gifs de Ositos Felices (aparecerán después de presionar "Sí") -->
-        <div id="happyGifContainer1" class="gif-container">
-            <img src="https://encoded.pe/sanvalentin/mocha.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
-        </div>
-        <div id="happyGifContainer2" class="gif-container">
-            <img src="https://encoded.pe/sanvalentin/mocha6final.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
-        </div>
-        <div id="happyGifContainer3" class="gif-container">
-            <img src="https://encoded.pe/sanvalentin/mocha7final.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
-        </div>
-        <div id="happyGifContainer4" class="gif-container">
-            <img src="https://encoded.pe/sanvalentin/mocha9final.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
+        <!-- Gif de Osito Feliz (aparecerá después de presionar "Sí") -->
+        <div id="happyGifContainer" class="gif-container">
+            <img src="https://encoded.pe/sanvalentin/mocha6final.gif" alt="Osito Feliz" style="width: 100%; height: 100%;">
         </div>
     </div>
 
@@ -79,36 +70,24 @@
         document.addEventListener("DOMContentLoaded", function() {
             const siBtn = document.getElementById("siBtn");
             const noBtn = document.getElementById("noBtn");
-            const messageContainer = document.getElementById("messageContainer");
-            const gifContainers = document.querySelectorAll(".gif-container");
+            const happyGifContainer = document.getElementById("happyGifContainer");
 
-            // Función para ocultar todos los gifs
-            function hideAllGifs() {
-                gifContainers.forEach(container => {
-                    container.style.display = "none";
-                });
+            // Función para mostrar el gif de los ositos felices
+            function showHappyGif() {
+                happyGifContainer.style.display = "block";
             }
+
+            // Función para hacer que el botón "Sí" siga creciendo cada vez que se presiona "No"
+            let scaleFactor = 1; // Factor de escala inicial
+            noBtn.addEventListener("click", function() {
+                scaleFactor += 0.1; // Aumenta el tamaño con cada clic en "No"
+                siBtn.style.transform = `scale(${scaleFactor})`; // Aplica el nuevo tamaño
+                siBtn.style.transition = "transform 0.3s ease";
+            });
 
             // Función cuando se hace clic en "Sí"
             siBtn.addEventListener("click", function() {
-                // Se muestran los gifs uno tras otro
-                hideAllGifs();
-                let gifIndex = 1;
-                const interval = setInterval(() => {
-                    if (gifIndex <= 4) {
-                        document.getElementById(`happyGifContainer${gifIndex}`).style.display = "block";
-                        gifIndex++;
-                    } else {
-                        clearInterval(interval); // Detener después de mostrar todos los gifs
-                    }
-                }, 1000);  // Mostrar un gif cada segundo
-            });
-
-            // Función cuando se hace clic en "No"
-            noBtn.addEventListener("click", function() {
-                // Aumentar el tamaño del botón "Sí" constantemente
-                siBtn.style.transform = "scale(1.5)";
-                siBtn.style.transition = "transform 0.3s ease";
+                showHappyGif(); // Mostrar el gif de los ositos felices
             });
         });
     </script>
