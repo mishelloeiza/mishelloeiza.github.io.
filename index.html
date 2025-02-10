@@ -3,121 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invitación a San Valentín encoded</title>
-    
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
         }
-
         .container {
             text-align: center;
         }
-
-        #gifContainer img,
-        #happyGifContainer img,
-        #sadGifContainer img {
-            width: 80%;
-            height: auto;
-            margin-bottom: 20px;
+        h1 {
+            font-size: 2rem;
+            color: #333;
         }
-
         button {
-            background-color: #ff4081;
-            color: white;
-            border: none;
             padding: 10px 20px;
             margin: 10px;
+            font-size: 1rem;
             cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
             border-radius: 5px;
-            font-size: 16px;
+            transition: background-color 0.3s;
         }
-
         button:hover {
-            background-color: #ff1f5b;
+            background-color: #45a049;
+        }
+        #messageContainer {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        .gif-container {
+            display: none;
         }
     </style>
+    <title>Invitación a San Valentín</title>
 </head>
 <body>
+
     <div class="container">
-        
-        <!-- Contenedores de imágenes GIF -->
-        <div id="gifContainer">
-            <img id="gifContainerImg" src="https://encoded.pe/sanvalentin/mocha.gif" alt="Ositos Iniciales">
+        <div id="gifContainer" class="gif-container">
+            <img src="https://encoded.pe/sanvalentin/mocha.gif" alt="Ositos Iniciales" style="width: 100%; height: 100%;">
         </div>
-        <div id="happyGifContainer" style="display: none;">
+        <div id="happyGifContainer" class="gif-container">
             <img src="https://encoded.pe/sanvalentin/mocha.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
         </div>
-        <div id="happyGifContainer2" style="display: none;">
-            <img src="https://encoded.pe/sanvalentin/mocha6final.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
-        </div>
-        <div id="happyGifContainer3" style="display: none;">
-            <img src="https://encoded.pe/sanvalentin/mocha7final.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
-        </div>
-        <div id="happyGifContainer4" style="display: none;">
-            <img src="https://encoded.pe/sanvalentin/mocha9final.gif" alt="Ositos Felices" style="width: 100%; height: 100%;">
-        </div>
-        <div id="sadGifContainer" style="display: none;">
+        <div id="sadGifContainer" class="gif-container">
             <img src="https://encoded.pe/sanvalentin/mocha2.gif" alt="Osito Triste" style="width: 80%; height: 80%;">
-        </div>
-        <div id="sadGifContainer1" style="display: none;">
-            <img src="https://encoded.pe/sanvalentin/mocha3.gif" alt="Osito Triste" style="width: 80%; height: 80%;">
         </div>
         
         <h1 id="question">¿Quieres ser mi San Valentín?</h1>
+        
         <div id="messageContainer" style="display: none;"></div>
 
         <button id="siBtn">Sí</button>
         <button id="noBtn">No</button>
-        
     </div>
 
     <script>
-        // Esperar a que se cargue el DOM
         document.addEventListener("DOMContentLoaded", function() {
             const siBtn = document.getElementById("siBtn");
             const noBtn = document.getElementById("noBtn");
-            const question = document.getElementById("question");
             const messageContainer = document.getElementById("messageContainer");
-            const gifContainers = [
-                document.getElementById("gifContainer"),
-                document.getElementById("happyGifContainer"),
-                document.getElementById("happyGifContainer2"),
-                document.getElementById("happyGifContainer3"),
-                document.getElementById("happyGifContainer4"),
-                document.getElementById("sadGifContainer"),
-                document.getElementById("sadGifContainer1")
-            ];
+            const gifContainers = document.querySelectorAll(".gif-container");
 
-            // Función para ocultar todos los contenedores de gifs
+            // Función para ocultar todos los gifs
             function hideAllGifs() {
                 gifContainers.forEach(container => {
                     container.style.display = "none";
                 });
             }
 
-            // Mostrar la imagen correspondiente cuando se da clic en "Sí"
+            // Función cuando se hace clic en "Sí"
             siBtn.addEventListener("click", function() {
                 hideAllGifs();
-                document.getElementById("happyGifContainer").style.display = "block";
+                document.getElementById("happyGifContainer").style.display = "block";  // Muestra gif feliz
                 messageContainer.innerHTML = "¡Yay! ¡Eres mi San Valentín!";
                 messageContainer.style.display = "block";
             });
 
-            // Mostrar la imagen correspondiente cuando se da clic en "No"
+            // Función cuando se hace clic en "No"
             noBtn.addEventListener("click", function() {
                 hideAllGifs();
-                document.getElementById("sadGifContainer").style.display = "block";
+                document.getElementById("sadGifContainer").style.display = "block";  // Muestra gif triste
                 messageContainer.innerHTML = "¡Oh no! ¡Quizás otro año!";
                 messageContainer.style.display = "block";
             });
         });
     </script>
+
 </body>
 </html>
